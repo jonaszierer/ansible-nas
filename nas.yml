@@ -7,11 +7,13 @@
 
   roles:
     - role: bertvv.samba
+      when: (smb_enabled | default(False))
       tags:
         - samba
         - skip_ansible_lint
 
     - role: geerlingguy.nfs
+      when: (nfs_enabled | default(False))
       tags:
         - nfs
         - skip_ansible_lint
