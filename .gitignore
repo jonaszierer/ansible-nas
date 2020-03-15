@@ -1,5 +1,6 @@
 tests/test.yml
 site
+inventories/
 .vagrant
 roles
 *.retry
@@ -10,3 +11,6 @@ roles
 
 # Session
 Session.vim
+
+# emacs
+*~
