@@ -837,3 +837,12 @@ vd_users:
     password: "topsecret"
     sudo: "Y"
 vd_rdp_port: 3389
+
+###
+### Teamspeak
+###
+teamspeak_available_externally: "false"
+teamspeak_data_directory: "{{ docker_home }}/teamspeak/"
+teamspeak_user: teamspeak
+teamspeak_uid: 1311
+teamspeak_license: accept
