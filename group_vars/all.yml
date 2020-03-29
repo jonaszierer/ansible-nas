@@ -99,6 +99,9 @@ ubooquity_enabled: false
 # Joomla
 joomla_enabled: false
 
+# Pico
+pico_enabled: false
+
 # SEO
 serposcope_enabled: false
 
@@ -379,6 +382,12 @@ joomla_data_directory: "{{ docker_home }}/joomla"
 joomla_available_externally: "false"
 joomla_database_password: top_secret
 joomla_port: "8181"
+
+###
+### Pico
+###
+pico_available_externally: "true"
+pico_data_directory: "{{ docker_home }}/pico/"
 
 ###
 ### pyLoad

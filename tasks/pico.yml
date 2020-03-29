@@ -1,0 +1,30 @@
+- name: Create Pico Directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ pico_data_directory }}"
+
+- name: Pico Docker Container
+  docker_container:
+    name: pico
+    image: qnimbus/docker-picocms:latest
+    pull: true
+    ports:
+      - "9080:80"
+      - "9443:443"
+    volumes:
+      - "{{ pico_data_directory }}/content:/var/www/picocms/content:rw"
+      - "{{ pico_data_directory }}/plugins:/var/www/picocms/plugins:rw"
+      - "{{ pico_data_directory }}/themes:/var/www/picocms/themes:rw"
+      - "{{ pico_data_directory }}/config:/var/www/picocms/config:rw"
+      - "{{ pico_data_directory }}/assets:/var/www/picocms/assets:rw"
+    env:
+      LOG_FILE: "/data/pico.log"
+    labels:
+      traefik.backend: "pico"
+      traefik.frontend.rule: "Host:pico.{{ ansible_nas_domain }}"
+      traefik.enable: "{{ pico_available_externally }}"
+      traefik.port: "80"
+    restart_policy: unless-stopped
+    memory: 500m
