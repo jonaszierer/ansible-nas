@@ -42,7 +42,7 @@
 - name: Telegraf
   docker_container:
     name: telegraf
-    image: telegraf
+    image: segator/telegraf
     pull: true
     volumes:
       - "{{ telegraf_data_directory }}/telegraf.conf:/etc/telegraf/telegraf.conf:ro"
