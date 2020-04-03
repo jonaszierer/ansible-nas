@@ -844,5 +844,6 @@ vd_rdp_port: 3389
 teamspeak_available_externally: "false"
 teamspeak_data_directory: "{{ docker_home }}/teamspeak/"
 teamspeak_user: teamspeak
+teamspeak_serverpw: mysecretpw
 teamspeak_uid: 1311
 teamspeak_license: accept

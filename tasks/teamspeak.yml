@@ -11,6 +11,7 @@
   docker_container:
     name: teamspeak3
     image: "teamspeak:3.11.0"
+    command: ts3server serveradmin_password={{ teamspeak_serverpw }}
     pull: true
     state: started
     published_ports:

@@ -130,6 +130,10 @@
     when: (timemachine_enabled | default(False))
     tags: timemachine
 
+  - import_tasks: tasks/teamspeak.yml
+    when: (teamspeak_enabled | default(False))
+    tags: teamspeak
+
   - import_tasks: tasks/stats.yml
     when: (stats_enabled | default(False))
     tags: stats
@@ -233,7 +237,3 @@
   - import_tasks: tasks/virtual_desktop.yml
     when: (virtual_desktop_enabled | default(False))
     tags: virtual_desktop
-
-  - import_tasks: tasks/teamspeak.yml
-    when: (teamspeak_enabled | default(False))
-    tags: teamspeak
