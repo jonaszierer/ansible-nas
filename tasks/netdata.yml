@@ -28,5 +28,8 @@
     labels:
       traefik.backend: "netdata"
       traefik.frontend.rule: "Host:netdata.{{ ansible_nas_domain }}"
-      traefik.enable: "{{ netdata_available_externally }}"
+      traefik.enable: "true"
       traefik.port: "19999"
+      traefik.frontend.whiteList.sourceRange: "{{ '' if netdata_available_externally=='true' else ansible_nas_localsubnet }}"
+      traefik.frontend.whiteList.useXForwardedFor: "true"
+

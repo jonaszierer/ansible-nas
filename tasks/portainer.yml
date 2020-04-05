@@ -22,5 +22,7 @@
     labels:
       traefik.backend: "portainer"
       traefik.frontend.rule: "Host:portainer.{{ ansible_nas_domain }}"
-      traefik.enable: "{{ portainer_available_externally }}"
+      traefik.enable: "true"
       traefik.port: "9000"
+      traefik.frontend.whiteList.sourceRange: "{{ '' if portainer_available_externally=='true' else ansible_nas_localsubnet }}"
+      traefik.frontend.whiteList.useXForwardedFor: "true"

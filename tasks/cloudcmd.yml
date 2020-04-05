@@ -25,5 +25,7 @@
     labels:
       traefik.backend: "cloudcmd"
       traefik.frontend.rule: "Host:cloudcmd.{{ ansible_nas_domain }}"
-      traefik.enable: "{{ cloudcmd_available_externally }}"
+      traefik.enable: "true"
       traefik.port: "8000"
+      traefik.frontend.whiteList.sourceRange: "{{ '' if clodcmd_available_externally=='true' else ansible_nas_localsubnet }}"
+      traefik.frontend.whiteList.useXForwardedFor: "true"

@@ -114,6 +114,7 @@ traefik_enabled: false
 traefik_port_http: "80"
 traefik_port_https: "443"
 traefik_port_ui: "8083"
+traefik_localsubnet: 192.168.1.1/24
 ###
 ### General
 ###
