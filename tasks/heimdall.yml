@@ -45,5 +45,5 @@
       traefik.frontend.rule: "Host:heimdall.{{ ansible_nas_domain }}"
       traefik.enable: "true"
       traefik.port: "80"
-      traefik.frontend.whiteList.sourceRange: "{{ '' if heimdall_available_externally=='true' else traefik_localsubnet }}"
+      traefik.frontend.whiteList.sourceRange: "{{ '' if heimdall_available_externally=='true' else ansible_nas_localsubnet }}"
       traefik.frontend.whiteList.useXForwardedFor: "true"
