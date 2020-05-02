@@ -80,6 +80,8 @@ bitwarden_enabled: false
 
 # Finance
 firefly_enabled: false
+firefly_app_key: "S0m3R@nd0mString0f32Ch@rsEx@ct1y"
+firefly_map_api: "test"
 
 # Wallabag
 wallabag_enabled: false

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# cron job for Firefly III
+/usr/local/bin/php /var/www/firefly-iii/artisan firefly-iii:cron
