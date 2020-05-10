@@ -50,6 +50,7 @@
       APP_ENV: "local"
       APP_KEY: "{{ firefly_app_key }}"
       APP_URL: "firefly.{{ ansible_nas_domain }}"
+      APP_FORCE_SSL: "true"
       DB_CONNECTION: "mysql"
       DB_HOST: "db"
       DB_DATABASE: "firefly"
@@ -57,6 +58,8 @@
       DB_PASSWORD: "firefly"
       TZ: "{{ ansible_nas_timezone }}"
       MAPBOX_API_KEY: "{{ firefly_map_api }}"
+      USE_PROXIES: "127.0.0.1"
+      TRUSTED_PROXIES: "**"
     restart_policy: unless-stopped
     memory: 1g
     labels:
