@@ -45,7 +45,7 @@
     links:
       - firefly-mysql:db
     ports:
-      - "{{ firefly_port }}:80"
+      - "{{ firefly_port }}:8080"
     env:
       APP_ENV: "local"
       APP_KEY: "{{ firefly_app_key }}"
@@ -66,6 +66,8 @@
       traefik.backend: "firefly"
       traefik.frontend.rule: "Host:firefly.{{ ansible_nas_domain }}"
       traefik.enable: "true"
-      traefik.port: "80"
+      traefik.port: "8080"
       traefik.frontend.whiteList.sourceRange: "{{ '' if firefly_available_externally=='true' else ansible_nas_localsubnet }}"
       traefik.frontend.whiteList.useXForwardedFor: "true"
+
+      
