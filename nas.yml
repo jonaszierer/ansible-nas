@@ -261,3 +261,12 @@
   - import_tasks: tasks/pytivo.yml
     when: (pytivo_enabled | default(False))
     tags: pytivo
+
+  - import_tasks: tasks/pihole.yml
+    when: (pihole_enabled | default(False))
+    tags: pihole
+
+  - import_tasks: tasks/paperless.yml
+    when: (paperless_enabled | default(False))
+    tags: paperless
+

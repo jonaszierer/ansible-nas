@@ -1,0 +1,31 @@
+- name: Create Paperless Directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ paperless_data_directory }}"
+
+- name: Paperless Docker Container
+  docker_container:
+    name: paperless
+    image: pitkley/paperless
+    pull: true
+    ports:
+      - "{{ paperless_port }}:80"
+    volumes:
+      - "{{ paperless_data_directory }}:/data:rw"
+      - "{{ paperless_data_directory }}:/media:rw"
+      - "{{ paperless_data_directory }}:/consume:rw"
+    restart_policy: unless-stopped
+    memory: 1g
+    env:
+      PAPERLESS_PASSPHRASE: "{{ paperless_passphrase }}"
+      PAPERLESS_OCR_THREADS: 1
+      
+      PAPERLESS_OCR_LANGUAGES: "{{ paperless_languages }}"
+    labels:
+      traefik.web.frontend.rule: "Host:paperless.{{ ansible_nas_domain }}"
+      traefik.enable: "true"
+      traefik.web.port: "80"
+      traefik.frontend.whiteList.sourceRange: "{{ '' if paperless_available_externally=='true' else ansible_nas_localsubnet }}"
+      traefik.frontend.whiteList.useXForwardedFor: "true"
