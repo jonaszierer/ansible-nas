@@ -1,0 +1,25 @@
+- name: Create PiHole Container
+  docker_container:
+    name: pihole
+    image: pihole/pihole
+    pull: true
+    volumes:
+      - "{{ pihole_data_directory }}/etc:/etc/pihole/:rw"
+      - "{{ pihole_data_directory }}/etc-dnsmasq.d:/etc/dnsmasq.d/:rw"
+      - "{{ pihole_data_directory }}/storage:/opt/pihole-storage/:rw"
+    ports:
+      - "{{ pihole_port }}:8080"
+    env:
+      PIHOLE_BASE="/opt/pihole-storage"
+      ADMIN_EMAIL="{{ ansible_nas_email }}"
+      TZ="{{ ansible_nas_timezone }}"
+      WEBPASSWORD="{{ pihole_webpw }}"
+    restart_policy: unless-stopped
+    memory: 1g
+    labels:
+      traefik.backend: "pihole"
+      traefik.frontend.rule: "Host:pihole.{{ ansible_nas_domain }}"
+      traefik.enable: "true"
+      traefik.port: "8080"
+      traefik.frontend.whiteList.sourceRange: "{{ '' if pihole_available_externally=='true' else ansible_nas_localsubnet }}"
+      traefik.frontend.whiteList.useXForwardedFor: "true"

@@ -677,6 +677,15 @@ nextcloud_data_directory: "{{ docker_home }}/nextcloud"
 nextcloud_port: "8080"
 
 ###
+### Paperless
+###
+paperless_available_externally: "false"
+paperless_data_directory: "{{ docker_home }}/paperless"
+paperless_passphrase: "abc"
+paperless_languages: "eng deu"
+paperless_port: "9090"
+
+###
 ### nginx
 ###
 nginx_data_directory: "{{ docker_home }}/nginx"
@@ -932,3 +941,11 @@ teamspeak_user: teamspeak
 teamspeak_serverpw: mysecretpw
 teamspeak_uid: 1311
 teamspeak_license: accept
+
+###
+### PiHole
+###
+pihole_available_externally: "false"
+pihole_data_directory: "{{ docker_home }}/pihole"
+pihole_port: "8066"
+pihole_webpw: "xyQYc!GTfjH9vNLGs9U!Jwua"
